@@ -1,0 +1,23 @@
+{
+  "name": "chordsandweapons-middleware",
+  "version": "1.0.0",
+  "description": "🔐 1. Secure & Private API Layer\r * Functions run server-side, so your Shopify Admin/Storefront tokens are kept secret.\r * You can easily enforce Firebase Auth on selected routes.\r * Hosting your middleware behind functions.https.onRequest() + Firebase Hosting proxy keeps it secure and tightly coupled.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simonklotz/chordsandweapons-middleware.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/simonklotz/chordsandweapons-middleware/issues"
+  },
+  "homepage": "https://github.com/simonklotz/chordsandweapons-middleware#readme",
+  "devDependencies": {
+    "firebase-tools": "^14.7.0"
+  }
+}
