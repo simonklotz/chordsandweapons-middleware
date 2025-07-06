@@ -6,15 +6,7 @@
  *
  * See a full list of supported triggers at https://firebase.google.com/docs/functions
  */
-// ESM
-import { onRequest} from "firebase-functions/v2/https";
+import * as functions from 'firebase-functions';
+import { app } from "./express";
 
-type Indexable = { [key: string]: any };
-
-export const helloWorld = onRequest((request, response) => {
-    // debugger;
-    const name = request.params[0];
-    const items: Indexable = { lamp: 'This is a lamp', chair: 'Good chair' };
-    const message = items[name];
-    response.send(`<h1>${message}</h1>`);
-});
+exports.api = functions.https.onRequest(app);
