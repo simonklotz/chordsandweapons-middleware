@@ -8,13 +8,16 @@ const shopifyApiVersion = defineString('SHOPIFY_API_VERSION');
 const shopifyStoreDomain = defineString('SHOPIFY_STORE_DOMAIN');
 const shopifyPublicAccessToken = defineString('SHOPIFY_PUBLIC_ACCESS_TOKEN');
 
-const client = createStorefrontApiClient({
-    storeDomain: shopifyStoreDomain.value(),
-    apiVersion: shopifyApiVersion.value(),
-    publicAccessToken: shopifyPublicAccessToken.value(),
-});
+function getShopifyClient() {
+    return createStorefrontApiClient({
+        storeDomain: shopifyStoreDomain.value(),
+        apiVersion: shopifyApiVersion.value(),
+        publicAccessToken: shopifyPublicAccessToken.value(),
+    });
+}
 
 export async function fetchProducts(after?: string, first = 10): Promise<{ products: Product[], pageInfo: PageInfo }> {
+    const client = getShopifyClient();
     const query = `
       query($first: Int, $after: String) {
         products(first: $first, after: $after) {
