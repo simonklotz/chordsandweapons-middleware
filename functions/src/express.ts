@@ -6,7 +6,7 @@ import { fetchProducts } from "./shopify";
 export const app = express();
 app.use(cors());
 
-app.get('/api/products', async (req, res) => {
+app.get('/products', async (req, res) => {
     const { after, first = 10 } = req.query;
     const cacheKey = `products:${after || 'first'}:${first}`;
 
