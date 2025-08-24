@@ -30,7 +30,28 @@ export async function fetchProducts(after?: string, first = 10): Promise<{ produ
               id
               title
               description
-              metafield(key: "audio_preview", namespace: "custom") {
+              images(first: 2) {
+                edges {
+                  node {
+                    url
+                    altText
+                  }
+                }
+              }
+              priceRange {
+                minVariantPrice {
+                  amount
+                  currencyCode
+                }
+                maxVariantPrice {
+                  amount
+                  currencyCode
+                }
+              }
+              artist: metafield(namespace: "custom", key: "artist") {
+                value
+              }
+              audioPreview: metafield(namespace: "custom", key: "audio_preview") {
                 value
               }
             }
@@ -51,8 +72,11 @@ export async function fetchProducts(after?: string, first = 10): Promise<{ produ
         products: data.products.edges.map(edge => ({
             id: edge.node.id,
             title: edge.node.title,
+            artist: edge.node.artist?.value ?? '',
             description: edge.node.description,
-            audioPreview: edge.node.metafield?.value ?? []
+            price: Number(edge.node.priceRange.minVariantPrice.amount),
+            imageUrl: edge.node.images.edges[0]?.node.url,
+            audioPreview: edge.node.audioPreview?.value ?? []
         })),
         pageInfo: data?.products.pageInfo!
     } : {

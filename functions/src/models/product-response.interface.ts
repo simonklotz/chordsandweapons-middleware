@@ -1,4 +1,9 @@
-import {PageInfo} from "./page-info.interface";
+import { PageInfo } from "./page-info.interface";
+
+interface Price {
+    amount: string;
+    currencyCode: string;
+}
 
 export interface ProductResponse {
     products: {
@@ -8,9 +13,24 @@ export interface ProductResponse {
                 id: string;
                 title: string;
                 description: string;
-                metafield: {
+                priceRange: {
+                    minVariantPrice: Price;
+                    maxVariantPrice: Price;
+                };
+                images: {
+                    edges: Array<{
+                        node: {
+                            url: string;
+                            altText: string | null
+                        }
+                    }>
+                };
+                artist: {
+                    value: string | null
+                } | null;
+                audioPreview: {
                     value: Array<string> | null
-                } | null
+                } | null;
             }
         }>
     };
