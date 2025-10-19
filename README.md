@@ -1,6 +1,6 @@
 # Chordsandweapons Middleware
 
-This is the Middleware between the Shopify Backend and Angular Frontend of the Chordsandweapons online store -
+This is the Middleware between the Shopify Backend and Angular Frontend of the Chordsandweapons online record store -
 implementing an Express API hosted as a Firebase Cloud Function.
 
                    ┌────────────────────────────┐
