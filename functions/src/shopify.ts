@@ -3,6 +3,7 @@ import { createStorefrontApiClient } from "@shopify/storefront-api-client";
 import { Product } from "./models/product.interface";
 import { PageInfo } from "./models/page-info.interface";
 import { ProductResponse } from "./models/product-response.interface";
+import { toNumericId } from "./helpers/to-numeric-id.helper";
 
 const shopifyApiVersion = defineString("SHOPIFY_API_VERSION");
 const shopifyStoreDomain = defineString("SHOPIFY_STORE_DOMAIN");
@@ -76,7 +77,7 @@ export async function fetchProducts(
   return data
     ? {
         products: data.products.edges.map((edge) => ({
-          id: edge.node.id,
+          id: toNumericId(edge.node.id),
           title: edge.node.title,
           artist: edge.node.artist?.value ?? "",
           description: edge.node.description,
