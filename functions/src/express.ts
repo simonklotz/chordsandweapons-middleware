@@ -1,6 +1,5 @@
 import express from "express";
 import cors from "cors";
-import { getFromCache, setToCache } from "./cache";
 import { fetchProducts } from "./shopify";
 import { Product } from "./models/product.interface";
 import { PageInfo } from "./models/page-info.interface";
@@ -11,20 +10,11 @@ app.use(cors());
 app.get("/products", async (req, res) => {
   const { after, first = 10 } = req.query;
 
-  const cacheKey = `products:${after || "first"}:${first}`;
-  const cached = await getFromCache<{ products: any; pageInfo: any }>(cacheKey);
-
   let products: Product[], pageInfo: PageInfo;
 
-  if (cached) {
-    products = cached.products;
-    pageInfo = cached.pageInfo;
-  } else {
-    const result = await fetchProducts(after as string, Number(first));
-    products = result.products;
-    pageInfo = result.pageInfo;
-    await setToCache(cacheKey, { products, pageInfo });
-  }
+  const result = await fetchProducts(after as string, Number(first));
+  products = result.products;
+  pageInfo = result.pageInfo;
 
   res.json({ products, pageInfo });
 });
