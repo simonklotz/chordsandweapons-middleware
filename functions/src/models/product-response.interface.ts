@@ -1,37 +1,27 @@
-import { PageInfo } from "./page-info.interface";
-
-interface Price {
-    amount: string;
-    currencyCode: string;
-}
+import { Price } from "./price.interface";
 
 export interface ProductResponse {
-    products: {
-        pageInfo: PageInfo;
-        edges: Array<{
-            node: {
-                id: string;
-                title: string;
-                description: string;
-                priceRange: {
-                    minVariantPrice: Price;
-                    maxVariantPrice: Price;
-                };
-                images: {
-                    edges: Array<{
-                        node: {
-                            url: string;
-                            altText: string | null
-                        }
-                    }>
-                };
-                artist: {
-                    value: string | null
-                } | null;
-                audioPreview: {
-                    value: Array<string> | null
-                } | null;
-            }
-        }>
+  product: {
+    title: string;
+    artist: {
+      value: string | null;
+    } | null;
+    description: string;
+    priceRange: {
+      minVariantPrice: Price;
+      maxVariantPrice: Price;
     };
+    images: {
+      edges: Array<{
+        node: {
+          url: string;
+          altText: string | null;
+        };
+      }>;
+    };
+    trackList: {
+      value: Array<string> | null;
+    } | null;
+    totalInventory: number;
+  };
 }
