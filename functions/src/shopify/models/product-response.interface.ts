@@ -1,4 +1,5 @@
-import { Price } from "./price.interface";
+import { Price } from "../../models/price.interface";
+import { TrackListResponse } from "./track-list-response.interface";
 
 export interface ProductResponse {
   product: {
@@ -19,9 +20,7 @@ export interface ProductResponse {
         };
       }>;
     };
-    trackList: {
-      value: Array<string> | null;
-    } | null;
+    trackList: TrackListResponse | null;
     totalInventory: number;
   };
 }

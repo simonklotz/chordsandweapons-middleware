@@ -1,8 +1,9 @@
 import { Product } from "../models/product.interface";
 import { getShopifyClient } from "./get-shopify-client";
-import { ProductResponse } from "../models/product-response.interface";
-import { getInventoryStatus } from "../helpers/get-inventory-status.helper";
+import { ProductResponse } from "./models/product-response.interface";
+import { getInventoryStatus } from "./helpers/get-inventory-status.helper";
 import { fetchProductQuery } from "./queries/fetch-product.query";
+import { transformTrackList } from "./helpers/transform-track-list.helper";
 
 export async function fetchProduct(id: string): Promise<Product | null> {
   const client = getShopifyClient();
@@ -31,7 +32,7 @@ export async function fetchProduct(id: string): Promise<Product | null> {
     description: product.description,
     inventoryStatus: getInventoryStatus(product.totalInventory),
     totalInventory: product.totalInventory,
-    trackList: product.trackList?.value ?? [],
+    trackList: transformTrackList(product.trackList),
     genre: [], // TODO
     label: "", // TODO
     releaseDate: "", // TODO

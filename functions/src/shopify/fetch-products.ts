@@ -1,9 +1,10 @@
-import { ProductListResponse } from "../models/product-list-response.interface";
-import { toNumericId } from "../helpers/to-numeric-id.helper";
+import { ProductListResponse } from "./models/product-list-response.interface";
+import { toNumericId } from "./helpers/to-numeric-id.helper";
 import { ProductList } from "../models/product-list.interface";
 import { getShopifyClient } from "./get-shopify-client";
 import { fetchProductsQuery } from "./queries/fetch-products.query";
-import { getInventoryStatus } from "../helpers/get-inventory-status.helper";
+import { getInventoryStatus } from "./helpers/get-inventory-status.helper";
+import { transformTrackList } from "./helpers/transform-track-list.helper";
 
 export async function fetchProducts(
   after?: string,
@@ -41,7 +42,7 @@ export async function fetchProducts(
       price: edge.node.priceRange.minVariantPrice,
       imageUrl: edge.node.images.edges[0]?.node.url,
       inventoryStatus: getInventoryStatus(edge.node.totalInventory),
-      trackList: edge.node.trackList?.value ?? [],
+      trackList: transformTrackList(edge.node.trackList),
     })),
     total: 0, // TODO
     page: 1, // TODO

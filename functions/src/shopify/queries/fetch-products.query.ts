@@ -31,7 +31,24 @@ export const fetchProductsQuery = /* GraphQL */ `
             value
           }
           trackList: metafield(namespace: "custom", key: "track_list") {
-            value
+            references(first: 20) {
+              edges {
+                node {
+                  ... on Metaobject {
+                    id
+                    position: field(key: "position") {
+                      value
+                    }
+                    title: field(key: "title") {
+                      value
+                    }
+                    previewUrl: field(key: "preview_url") {
+                      value
+                    }
+                  }
+                }
+              }
+            }
           }
           totalInventory
         }

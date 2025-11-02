@@ -1,9 +1,12 @@
-import { PageInfo } from "./page-info.interface";
-import { Price } from "./price.interface";
+import { Price } from "../../models/price.interface";
+import { TrackListResponse } from "./track-list-response.interface";
 
 export interface ProductListResponse {
   products: {
-    pageInfo: PageInfo;
+    pageInfo: {
+      hasNextPage: boolean;
+      endCursor: string | null;
+    };
     edges: Array<{
       node: {
         id: string;
@@ -23,9 +26,7 @@ export interface ProductListResponse {
             };
           }>;
         };
-        trackList: {
-          value: Array<string> | null;
-        } | null;
+        trackList: TrackListResponse | null;
         totalInventory: number;
       };
     }>;

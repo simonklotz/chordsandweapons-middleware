@@ -1,4 +1,5 @@
 import { Price } from "./price.interface";
+import { Track } from "./track.interface";
 
 export interface Product {
   id: number;
@@ -9,7 +10,7 @@ export interface Product {
   description: string;
   inventoryStatus: "in_stock" | "low_stock" | "out_of_stock";
   totalInventory: number;
-  trackList: string[];
+  trackList: Track[];
   genre: string[];
   label: string;
   releaseDate: string;

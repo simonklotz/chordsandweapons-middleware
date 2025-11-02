@@ -1,4 +1,4 @@
-import { InventoryStatus } from "../models/inventory-status.type";
+import { InventoryStatus } from "../../models/inventory-status.type";
 
 export const getInventoryStatus = (totalInventory: number): InventoryStatus => {
   if (totalInventory === 0) {
