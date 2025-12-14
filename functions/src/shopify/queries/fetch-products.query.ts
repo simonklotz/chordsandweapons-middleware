@@ -19,7 +19,7 @@ export const fetchProductsQuery = /* GraphQL */ `
               currencyCode
             }
           }
-          images(first: 2) {
+          images(first: 1) {
             edges {
               node {
                 url

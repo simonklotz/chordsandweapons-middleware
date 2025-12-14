@@ -28,13 +28,14 @@ export async function fetchProduct(id: string): Promise<Product | null> {
     title: product.title,
     artist: product.artist?.value ?? "",
     price: product.priceRange.minVariantPrice,
-    imageUrl: product.images.edges[0].node.url ?? "",
+    images: product.images.edges.map(edge => edge.node.url ?? ''),
     description: product.description,
     inventoryStatus: getInventoryStatus(product.totalInventory),
     totalInventory: product.totalInventory,
     trackList: transformTrackList(product.trackList),
     genre: [], // TODO
-    label: "", // TODO
+    format: product.format?.value ?? "",
+    label: product.label?.value ?? "",
     releaseDate: "", // TODO
   };
 }

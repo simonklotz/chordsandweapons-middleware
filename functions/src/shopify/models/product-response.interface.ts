@@ -7,6 +7,12 @@ export interface ProductResponse {
     artist: {
       value: string | null;
     } | null;
+    format: {
+      value: string | null;
+    } | null;
+    label: {
+      value: string | null;
+    } | null;
     description: string;
     priceRange: {
       minVariantPrice: Price;

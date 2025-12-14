@@ -5,6 +5,12 @@ export const fetchProductQuery = /* GraphQL */ `
       artist: metafield(namespace: "custom", key: "artist") {
         value
       }
+      format: metafield(namespace: "custom", key: "format") {
+        value
+      }
+      label: metafield(namespace: "custom", key: "label") {
+        value
+      }
       description
       priceRange {
         minVariantPrice {
@@ -16,7 +22,7 @@ export const fetchProductQuery = /* GraphQL */ `
           currencyCode
         }
       }
-      images(first: 2) {
+      images(first: 5) {
         edges {
           node {
             url

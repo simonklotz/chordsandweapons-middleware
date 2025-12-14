@@ -40,7 +40,7 @@ export async function fetchProducts(
       title: edge.node.title,
       artist: edge.node.artist?.value ?? "",
       price: edge.node.priceRange.minVariantPrice,
-      imageUrl: edge.node.images.edges[0]?.node.url,
+      images: edge.node.images.edges.map(edge => edge.node.url ?? ''),
       inventoryStatus: getInventoryStatus(edge.node.totalInventory),
       trackList: transformTrackList(edge.node.trackList),
     })),
