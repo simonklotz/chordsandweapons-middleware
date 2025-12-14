@@ -18,6 +18,6 @@
   },
   "homepage": "https://github.com/simonklotz/chordsandweapons-middleware#readme",
   "devDependencies": {
-    "firebase-tools": "^14.7.0"
+    "firebase-tools": "^14.27.0"
   }
 }
