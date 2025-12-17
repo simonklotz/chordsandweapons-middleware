@@ -1,7 +1,7 @@
 import { ProductListItemResponse } from "./product-list-item-response.interface";
 
-export interface ProductListResponse {
-  products: {
+export interface SearchResponse {
+  search: {
     pageInfo: {
       hasNextPage: boolean;
       endCursor: string | null;
